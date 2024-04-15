@@ -10,10 +10,10 @@ vim.keymap.set("n", "<leader>w", "<cmd>bdelete<CR>", { desc = "Delete current bu
 vim.keymap.set("n", "<leader>T", "<cmd>Resurrect<CR>", { desc = "Reopen last deleted buffer" })
 
 -- NeoTree
-vim.keymap.set("n", "<leader>b", "<cmd>Neotree focus buffers<CR>", { desc = "Focus on NeoTree buffers" })
+vim.keymap.set("n", "<leader>-", "<cmd>Neotree position=current toggle<CR>", { desc = "Open Neotree in fullscreen" })
 vim.keymap.set(
   "n",
-  "<leader>d",
-  "<cmd>Neotree focus document_symbols<CR>",
+  "<leader>ds",
+  "<cmd>Neotree focus document_symbols toggle<CR>",
   { desc = "Focus on NeoTree document symbols" }
 )
