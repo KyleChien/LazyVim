@@ -1,31 +1,53 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
+local opts = { noremap = true, silent = true }
+local map = vim.keymap.set
 
--- Select all
-vim.keymap.set("n", "<leader>a", "gg<S-v>G", { desc = "Select all" })
+-- Keep cursor centered when scrolling
+-- map("n", "<C-d>", "<C-d>zz", opts)
+-- map("n", "<C-u>", "<C-u>zz", opts)
 
--- Keep window centered when going up/down
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+-- Move selected line / block of text in visual mode
+map("v", "J", ":m '>+1<CR>gv=gv", opts)
+map("v", "K", ":m '<-2<CR>gv=gv", opts)
+
+-- Move to start/end of line
+map({ "n", "x", "o" }, "H", "^", opts)
+map({ "n", "x", "o" }, "L", "g_", opts)
+
+-- Navigate buffers
+map("n", "<Tab>", ":bnext<CR>", opts)
+map("n", "<S-Tab>", ":bprevious<CR>", opts)
+
+-- Panes resizing
+map("n", "+", ":vertical resize +5<CR>")
+map("n", "_", ":vertical resize -5<CR>")
+map("n", "=", ":resize +5<CR>")
+map("n", "-", ":resize -5<CR>")
 
 -- Paste without overwriting register
-vim.keymap.set("v", "p", '"_dP')
+map("v", "p", '"_dp')
+map("v", "P", '"_dP')
+
+map("n", "n", "nzzzv", opts)
+map("n", "N", "Nzzzv", opts)
+map("n", "*", "*zzzv", opts)
+map("n", "#", "#zzzv", opts)
+
+map("n", "<Esc>", ":nohlsearch<CR>", opts)
+
+-- Select all
+map("n", "<leader>a", "gg<S-v>G", opts)
 
 -- Buffers
-vim.keymap.set("n", "<leader>w", "<cmd>bdelete<CR>", { desc = "Delete current buffer" })
-vim.keymap.set("n", "<leader>T", "<cmd>Resurrect<CR>", { desc = "Reopen last deleted buffer" })
+map("n", "<leader>w", "<cmd>bdelete<CR>", opts)
+map("n", "<leader>T", "<cmd>Resurrect<CR>", opts)
 
 -- NeoTree
-vim.keymap.set("n", "<leader>-", "<cmd>Neotree position=current toggle<CR>", { desc = "Open Neotree in fullscreen" })
-vim.keymap.set(
-  "n",
-  "<leader>ds",
-  "<cmd>Neotree focus document_symbols toggle<CR>",
-  { desc = "Focus on NeoTree document symbols" }
-)
+-- map("n", "<C-b>", "<cmd>Neotree position=left filesystem toggle<CR>", opts)
+map("n", "<leader>e", "<cmd>Neotree position=float filesystem toggle<CR>", opts)
+map("n", "<leader>ds", "<cmd>Neotree position=float document_symbols toggle<CR>", opts)
 
 -- Scope
-vim.keymap.set("n", "<leader>fs", "<cmd>Telescope scope buffers<CR>", { desc = "Scoped buffers in all tabs" })
+map("n", "<leader>fs", "<cmd>Telescope scope buffers<CR>", opts)
