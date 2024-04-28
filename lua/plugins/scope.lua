@@ -1,1 +1,1 @@
-return { "tiagovla/scope.nvim" }
+return { "tiagovla/scope.nvim", enabled = false }
