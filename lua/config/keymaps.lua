@@ -51,4 +51,4 @@ map("n", "<leader>e", "<cmd>Neotree position=float filesystem toggle<CR>", opts)
 map("n", "<leader>ds", "<cmd>Neotree position=float document_symbols toggle<CR>", opts)
 
 -- Scope
-map("n", "<leader>fs", "<cmd>Telescope scope buffers<CR>", opts)
+-- map("n", "<leader>fs", "<cmd>Telescope scope buffers<CR>", opts)
