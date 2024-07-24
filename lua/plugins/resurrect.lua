@@ -1,3 +1,0 @@
-return {
-  "supercrabtree/vim-resurrect",
-}

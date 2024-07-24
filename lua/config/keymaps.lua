@@ -8,47 +8,32 @@ local map = vim.keymap.set
 -- Keep cursor centered when scrolling
 -- map("n", "<C-d>", "<C-d>zz", opts)
 -- map("n", "<C-u>", "<C-u>zz", opts)
+map("n", "<C-n>", "gjzz", opts)
+map("n", "<C-p>", "gkzz", opts)
 
--- Move selected line / block of text in visual mode
-map("v", "J", ":m '>+1<CR>gv=gv", opts)
-map("v", "K", ":m '<-2<CR>gv=gv", opts)
+-- Select all
+map("n", "<C-a>", "gg<S-v>G", opts)
 
 -- Move to start/end of line
 map({ "n", "x", "o" }, "H", "^", opts)
 map({ "n", "x", "o" }, "L", "g_", opts)
 
--- Navigate buffers
-map("n", "<Tab>", ":bnext<CR>", opts)
-map("n", "<S-Tab>", ":bprevious<CR>", opts)
-
 -- Panes resizing
-map("n", "+", ":vertical resize +5<CR>")
-map("n", "_", ":vertical resize -5<CR>")
-map("n", "=", ":resize +5<CR>")
-map("n", "-", ":resize -5<CR>")
+map("n", "+", ":vertical resize +7<CR>")
+map("n", "_", ":vertical resize -3<CR>")
+map("n", "=", ":resize +7<CR>")
+map("n", "-", ":resize -3<CR>")
 
 -- Paste without overwriting register
 map("v", "p", '"_dp')
 map("v", "P", '"_dP')
 
-map("n", "n", "nzzzv", opts)
-map("n", "N", "Nzzzv", opts)
-map("n", "*", "*zzzv", opts)
-map("n", "#", "#zzzv", opts)
-
-map("n", "<Esc>", ":nohlsearch<CR>", opts)
-
--- Select all
-map("n", "<leader>a", "gg<S-v>G", opts)
-
--- Buffers
-map("n", "<leader>w", "<cmd>bdelete<CR>", opts)
-map("n", "<leader>T", "<cmd>Resurrect<CR>", opts)
-
 -- NeoTree
 -- map("n", "<C-b>", "<cmd>Neotree position=left filesystem toggle<CR>", opts)
-map("n", "<leader>e", "<cmd>Neotree position=float filesystem toggle<CR>", opts)
-map("n", "<leader>ds", "<cmd>Neotree position=float document_symbols toggle<CR>", opts)
+-- map("n", "<C-B>", "<cmd>Neotree dir=. position=right filesystem toggle reveal<CR>", opts)
 
--- Scope
--- map("n", "<leader>fs", "<cmd>Telescope scope buffers<CR>", opts)
+-- -- Navigate buffers
+-- map("n", "<Tab>", ":bnext<CR>", opts)
+-- map("n", "<S-Tab>", ":bprevious<CR>", opts)
+-- map("n", "<Tab>", "<cmd>BufferLinePick<CR>", opts)
+map("n", "<leader>w", LazyVim.ui.bufremove, { desc = "Delete Buffer" })
