@@ -4,13 +4,6 @@
 local opts = { noremap = true, silent = true }
 local map = vim.keymap.set
 
--- Covered by Cinnamon
--- Keep cursor centered when scrolling
--- map("n", "<C-d>", "<C-d>zz", opts)
--- map("n", "<C-u>", "<C-u>zz", opts)
-map("n", "<C-n>", "gjzz", opts)
-map("n", "<C-p>", "gkzz", opts)
-
 -- Select all
 map("n", "<C-a>", "gg<S-v>G", opts)
 
@@ -27,13 +20,3 @@ map("n", "-", ":resize -3<CR>")
 -- Paste without overwriting register
 map("v", "p", '"_dp')
 map("v", "P", '"_dP')
-
--- NeoTree
--- map("n", "<C-b>", "<cmd>Neotree position=left filesystem toggle<CR>", opts)
--- map("n", "<C-B>", "<cmd>Neotree dir=. position=right filesystem toggle reveal<CR>", opts)
-
--- -- Navigate buffers
--- map("n", "<Tab>", ":bnext<CR>", opts)
--- map("n", "<S-Tab>", ":bprevious<CR>", opts)
--- map("n", "<Tab>", "<cmd>BufferLinePick<CR>", opts)
-map("n", "<leader>w", LazyVim.ui.bufremove, { desc = "Delete Buffer" })

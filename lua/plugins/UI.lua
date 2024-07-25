@@ -1,3 +1,9 @@
+-- ==================================================
+-- Plugin list
+-- 1. bufferline
+-- 2. dashboard
+-- 3. barbecue
+-- ==================================================
 return {
   {
     "akinsho/bufferline.nvim",
@@ -12,8 +18,6 @@ return {
       { "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
       { "[B", "<cmd>BufferLineMovePrev<cr>", desc = "Move buffer prev" },
       { "]B", "<cmd>BufferLineMoveNext<cr>", desc = "Move buffer next" },
-      { "<S-Tab>", "[b", desc = "Prev Buffer", remap = true },
-      { "<Tab>", "]b", desc = "Next Buffer", remap = true },
     },
     opts = {
       options = {
@@ -56,22 +60,8 @@ return {
       })
     end,
   },
+  -- Dashboard at the nvim startup page
   {
-    -- Buffer "tab" on the top of the screen
-    "akinsho/bufferline.nvim",
-    enabled = true,
-    opts = {
-      options = {
-        hover = {
-          enabled = true,
-          delay = 200,
-          reveal = { "close" },
-        },
-      },
-    },
-  },
-  {
-    -- Dashboard at the nvim startup page
     "nvimdev/dashboard-nvim",
     lazy = false, -- As https://github.com/nvimdev/dashboard-nvim/pull/450, dashboard-nvim shouldn't be lazy-loaded to properly handle stdin.
     opts = function()
@@ -127,39 +117,6 @@ return {
       end
 
       return opts
-    end,
-  },
-  {
-    -- Status line on top of the screen
-    "utilyre/barbecue.nvim",
-    name = "barbecue",
-    version = "*",
-    dependencies = {
-      "SmiteshP/nvim-navic",
-      "nvim-tree/nvim-web-devicons", -- optional dependency
-    },
-    opts = {
-      -- configurations go here
-    },
-    config = function()
-      require("barbecue").setup({
-        create_autocmd = false, -- prevent barbecue from updating itself automatically
-      })
-
-      vim.api.nvim_create_autocmd({
-        "WinScrolled", -- or WinResized on NVIM-v0.9 and higher
-        "BufWinEnter",
-        "CursorHold",
-        "InsertLeave",
-
-        -- include this if you have set `show_modified` to `true`
-        -- "BufModifiedSet",
-      }, {
-        group = vim.api.nvim_create_augroup("barbecue.updater", {}),
-        callback = function()
-          require("barbecue.ui").update()
-        end,
-      })
     end,
   },
 }
